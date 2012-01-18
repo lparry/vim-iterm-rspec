@@ -6,14 +6,21 @@ if !has("ruby")
 endif
 
 command! Spec :ruby ITerm.spec
+command! Cuke :ruby ITerm.cuke
 
 ruby <<EOF
 
 module ITerm
+  def self.cuke
+    current_file = VIM::Buffer.current.name
+    exec("clear")
+    exec("bundle exec cucumber #{current_file}")
+  end
+
   def self.spec
     current_file = VIM::Buffer.current.name
     exec("clear")
-    exec("spec #{current_file}")
+    exec("bundle exec spec #{current_file}")
   end
 
   def self.exec(command)
