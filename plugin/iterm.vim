@@ -20,7 +20,7 @@ module ITerm
   def self.spec
     current_file = VIM::Buffer.current.name
     exec("clear")
-    exec("bundle exec spec #{current_file}")
+    exec("bundle exec rspec #{current_file}")
   end
 
   def self.exec(command)
